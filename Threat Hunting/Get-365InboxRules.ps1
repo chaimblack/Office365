@@ -164,7 +164,7 @@ Function Get-365InboxRules {
             $ForwardingTo = $AllFwd | Select-Object -Unique
             $AllForwardExt = $ForwardingTo | Where-Object {$_ -like "*@*"}
             $ForwardExt = foreach ($External in $AllForwardExt) {
-                if ( ($External -split '@')[1] -notin (Get-MsolDomain).name) {$External}
+                if ( ($External -split '@')[1] -notin (Get-AcceptedDomain).DomainName) {$External}
             }
             if ($ForwardExt) {$CanFwdExt = $true} 
             Else {$CanFwdExt = $false}
